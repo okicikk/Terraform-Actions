@@ -32,6 +32,9 @@ resource "azurerm_app_service_source_control" "github_deployment" {
   app_id   = azurerm_linux_web_app.azurewebapp.id
   repo_url = var.github_repo_url
   branch   = "main"
+  depends_on = [
+    azurerm_linux_web_app.azurewebapp
+  ]
 }
 resource "azurerm_mssql_server" "sqlserver" {
   name                         = var.sql_server_name
