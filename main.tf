@@ -24,13 +24,13 @@ resource "azurerm_service_plan" "azurewebapp_plan" {
   location            = var.resource_group_location
   os_type             = "Linux"
   sku_name            = "F1"
-  
+
 }
 resource "azurerm_app_service_source_control" "github_deployment" {
   app_id   = azurerm_linux_web_app.azurewebapp.id
   repo_url = var.github_repo_url
   branch   = "main"
-  
+
 }
 resource "azurerm_mssql_server" "sqlserver" {
   name                         = var.sql_server_name
