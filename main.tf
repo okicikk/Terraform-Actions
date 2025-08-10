@@ -6,7 +6,7 @@ terraform {
     }
   }
   backend "azurerm" {
-    resource_group_name  = "azurewebapprg-okicikk"
+    resource_group_name  = "StorageRG"
     storage_account_name = "taskboardstorageokicikk"
     container_name       = "taskboardcontainer-okicikk"
     key                  = "terraform.tfstate"
