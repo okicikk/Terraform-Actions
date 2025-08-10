@@ -24,17 +24,13 @@ resource "azurerm_service_plan" "azurewebapp_plan" {
   location            = var.resource_group_location
   os_type             = "Linux"
   sku_name            = "F1"
-  depends_on = [
-    azurerm_resource_group.azurewebapprg
-  ]
+  
 }
 resource "azurerm_app_service_source_control" "github_deployment" {
   app_id   = azurerm_linux_web_app.azurewebapp.id
   repo_url = var.github_repo_url
   branch   = "main"
-  depends_on = [
-    azurerm_linux_web_app.azurewebapp
-  ]
+  
 }
 resource "azurerm_mssql_server" "sqlserver" {
   name                         = var.sql_server_name
@@ -43,9 +39,7 @@ resource "azurerm_mssql_server" "sqlserver" {
   version                      = "12.0"
   administrator_login          = var.sql_admin_login
   administrator_login_password = var.sql_admin_password
-  depends_on = [
-    azurerm_resource_group.azurewebapprg
-  ]
+  use_manual_integration       = true
 }
 
 resource "azurerm_mssql_database" "sqldb" {
